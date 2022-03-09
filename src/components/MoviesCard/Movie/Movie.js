@@ -1,6 +1,7 @@
 import LikeAndDislike from "../../UI/LikeAndDislike";
 import "./Movie.css";
 const Movie = (props) => {
+  const { ratio } = props;
   return (
     <div className="item">
       <div className="content">
@@ -8,7 +9,7 @@ const Movie = (props) => {
         <p>{props.movie.category}</p>
       </div>
       <div className="like-dislike">
-        <LikeAndDislike></LikeAndDislike>
+        <LikeAndDislike ratio={ratio}></LikeAndDislike>
       </div>
       <div className="background-image">
         <img

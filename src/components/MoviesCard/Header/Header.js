@@ -6,7 +6,11 @@ const Header = (props) => {
     <div className="movies-header">
       <h2>Movies</h2>
       <div>
-        <MultiSelect></MultiSelect>
+        <MultiSelect
+          categories={props.categories}
+          filters={props.filters}
+          onFilterChange={props.onFilterChange}
+        ></MultiSelect>
       </div>
     </div>
   );

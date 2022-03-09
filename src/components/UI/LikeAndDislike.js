@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./LikeAndDislike.css";
 import RatioBar from "./RatioBar";
 const LikeAndDislike = (props) => {
+  const { ratio } = props;
   const [likedOrDisliked, setLikedOrDisliked] = useState({
     liked: false,
     disliked: false,
@@ -46,7 +47,7 @@ const LikeAndDislike = (props) => {
           </label>
         </div>
       </div>
-      <RatioBar ratio={85}></RatioBar>
+      <RatioBar ratio={ratio}></RatioBar>
     </>
   );
 };
