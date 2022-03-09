@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(224, 224, 224);
+  background-color: transparent;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }

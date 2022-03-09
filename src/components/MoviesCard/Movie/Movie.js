@@ -1,3 +1,4 @@
+import LikeAndDislike from "../../UI/LikeAndDislike";
 import "./Movie.css";
 const Movie = (props) => {
   return (
@@ -6,6 +7,9 @@ const Movie = (props) => {
         <h2>{props.movie.title}</h2>
         <p>{props.movie.category}</p>
       </div>
+      <div className="like-dislike">
+        <LikeAndDislike></LikeAndDislike>
+      </div>
       <div className="background-image">
         <img
           src="https://movieposters2.com/images/1301847-b.jpg"
@@ -13,9 +17,7 @@ const Movie = (props) => {
           alt="not found"
         ></img>
       </div>
-      <div className="gradient-cover">
-        
-      </div>
+      <div className="gradient-cover"></div>
     </div>
   );
 };

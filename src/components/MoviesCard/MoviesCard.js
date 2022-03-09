@@ -4,6 +4,7 @@ import { movies$ } from "../../mocked-server/movies";
 import "./MoviesCard.css";
 import Movie from "./Movie/Movie";
 import { CircularProgress } from "@mui/material";
+import LikeAndDislike from "../UI/LikeAndDislike";
 const fetchMovies = async () => {
   return await movies$;
 };

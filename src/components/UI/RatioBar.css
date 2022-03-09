@@ -1,0 +1,20 @@
+.bar-wrapper {
+  width: 100%;
+  position: relative;
+}
+.bar {
+  width: 45%;
+  height: 3px;
+  background-color: rgb(120, 36, 36);
+  border-radius: 3px;
+  margin: auto;
+  position: relative;
+}
+.ratio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: rgb(30, 116, 223, 1);
+  border-radius: 3px;
+}
