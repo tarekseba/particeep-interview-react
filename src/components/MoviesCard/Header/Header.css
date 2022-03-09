@@ -1,0 +1,24 @@
+.movies-header {
+  margin: auto;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(224, 224, 224);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.movies-header > h2 {
+  color: rgb(0, 0, 0);
+  height: auto;
+  margin-left: 1rem;
+}
+
+.movies-header > button {
+  color: rgb(0, 0, 0);
+  height: auto;
+  margin-left: 1rem;
+}

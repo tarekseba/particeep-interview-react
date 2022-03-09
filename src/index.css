@@ -1,5 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100;300;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Smooch Sans";
+  color: black;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #381f42;
+  /* background-image: linear-gradient(147deg, #30173a 0%, #000000 74%); */
+  background-image: url("https://forestpunk.files.wordpress.com/2013/09/massive-b-horror-collage-wallpaper-horror-movies-29491579-2560-1600.jpg");
+  vertical-align: center;
 }
