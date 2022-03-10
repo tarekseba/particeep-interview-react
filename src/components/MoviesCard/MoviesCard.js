@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Header from "./Header/Header";
 import { movies$ } from "../../mocked-server/movies";
 import "./MoviesCard.css";
 import Movie from "./Movie/Movie";
 import { CircularProgress } from "@mui/material";
-const fetchMovies = async () => {
-  return await movies$;
-};
+import { Context } from "../../Context/MoviesProvider";
 
 const MoviesCard = () => {
-  console.log("render");
-  const [movies, setMovies] = useState([]);
-  const [filters, setFilters] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { movies, setMovies, filters, setFilters, isLoading, setIsLoading } =
+    useContext(Context);
+
   useEffect(() => {
     async function fetch() {
       setIsLoading(true);
@@ -21,7 +18,7 @@ const MoviesCard = () => {
       setMovies(movies);
     }
     fetch();
-  }, []);
+  }, [setIsLoading, setMovies]);
   const filteredMovies = movies.filter((value) => {
     if (filters && filters.length === 0) {
       return true;
@@ -29,6 +26,7 @@ const MoviesCard = () => {
       return filters.includes(value.category);
     }
   });
+
   const categories = movies
     .map((value) => value.category)
     .filter((value, index, list) => list.indexOf(value) === index);

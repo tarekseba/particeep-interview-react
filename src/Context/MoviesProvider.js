@@ -3,7 +3,7 @@ import { movies$ } from "../mocked-server/movies";
 export const Context = createContext({});
 
 const MoviesContext = (props) => {
-  const [movies, setMovies] = useState({});
+  const [movies, setMovies] = useState([]);
   const [filters, setFilters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {

@@ -1,9 +1,17 @@
+import { useContext } from "react";
+import { Context } from "../../Context/MoviesProvider";
 import "./DeleteButton.css";
 const DeleteButton = (props) => {
+  const { movies, setMovies } = useContext(Context);
+  const deleteHandler = (event) => {
+    const newMovies = movies.filter((mov) => mov.id !== props.movieId);
+    setMovies([...newMovies]);
+  };
   return (
     <div
       className="btn"
       style={{ top: props.top, right: props.right }}
+      onClick={deleteHandler}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
