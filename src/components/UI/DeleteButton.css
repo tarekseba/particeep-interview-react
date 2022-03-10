@@ -18,13 +18,3 @@
   transition: all ease-in-out 500ms;
 }
 
-/* @media only screen and (max-width: 480px) {
-  .btn {
-    opacity: 1;
-  }
-  .btn > svg {
-    fill: rgb(184, 181, 181);
-    filter: drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.3));
-    transform: scale(1.1);
-  }
-} */
