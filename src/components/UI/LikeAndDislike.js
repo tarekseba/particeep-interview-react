@@ -19,7 +19,6 @@ const LikeAndDislike = (props) => {
   const likeHandler = (event) => {
     const { liked, disliked } = likedOrDisliked;
     const movie = movies.find((mov) => mov.id === props.movieId);
-    const index = movies.findIndex((mov) => mov.id === props.movieId);
     let newMovies = movies.filter((mov) => mov.id !== props.movieId);
     if (liked) {
       const state = [...newMovies, { ...movie, likes: movie.likes - 1 }].sort(

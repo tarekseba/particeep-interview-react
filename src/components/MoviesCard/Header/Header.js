@@ -1,6 +1,6 @@
 import "./Header.css";
-import MovieCountSelect from "./select/MovieCountSelect";
-import MultiSelect from "./select/MultiSelect";
+import MovieCountSelect from "../../UI/select/MovieCountSelect";
+import MultiSelect from "../../UI/select/MultiSelect";
 
 const Header = (props) => {
   return (
@@ -12,9 +12,7 @@ const Header = (props) => {
       </div>
 
       <div>
-        <MultiSelect
-          categories={props.categories}
-        ></MultiSelect>
+        <MultiSelect categories={props.categories}></MultiSelect>
       </div>
     </div>
   );

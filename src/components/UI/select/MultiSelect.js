@@ -4,7 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
-import { Context } from "../../../../Context/MoviesProvider";
+import { Context } from "../../../Context/MoviesProvider";
 import { useContext } from "react";
 
 const ITEM_HEIGHT = 48;

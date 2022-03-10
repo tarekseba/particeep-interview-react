@@ -5,7 +5,7 @@ const DeleteButton = (props) => {
   const { movies, setMovies, filters, setFilters } = useContext(Context);
   const deleteHandler = (event) => {
     const newMovies = movies.filter((mov) => mov.id !== props.movieId);
-    if (!newMovies.includes(props.category)) {
+    if (!newMovies.map((mov) => mov.category).includes(props.category)) {
       const newFilters = filters.filter((fil) => fil !== props.category);
       setFilters([...newFilters]);
     }
