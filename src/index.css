@@ -15,4 +15,5 @@ body {
   align-items: center;
   justify-content: center;
   background-image: url("https://forestpunk.files.wordpress.com/2013/09/massive-b-horror-collage-wallpaper-horror-movies-29491579-2560-1600.jpg");
+  box-shadow: inset 0px 0px 30px 30px rgb(0, 0, 0, 1);
 }

@@ -21,7 +21,7 @@ const MenuProps = {
 
 const MultiSelect = (props) => {
   const { categories } = props;
-  const { filters, setFilters, movies } = useContext(Context);
+  const { filters, setFilters } = useContext(Context);
   const handleChange = (event) => {
     const {
       target: { value },
@@ -46,6 +46,7 @@ const MultiSelect = (props) => {
           }
           MenuProps={MenuProps}
           placeholder="Filters"
+          style={{ textAlign: "center" }}
         >
           {categories.map((cat) => (
             <MenuItem key={cat} value={cat}>

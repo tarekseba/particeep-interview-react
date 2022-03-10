@@ -2,9 +2,13 @@ import { useContext } from "react";
 import { Context } from "../../Context/MoviesProvider";
 import "./DeleteButton.css";
 const DeleteButton = (props) => {
-  const { movies, setMovies } = useContext(Context);
+  const { movies, setMovies, filters, setFilters } = useContext(Context);
   const deleteHandler = (event) => {
     const newMovies = movies.filter((mov) => mov.id !== props.movieId);
+    if (!newMovies.includes(props.category)) {
+      const newFilters = filters.filter((fil) => fil !== props.category);
+      setFilters([...newFilters]);
+    }
     setMovies([...newMovies]);
   };
   return (

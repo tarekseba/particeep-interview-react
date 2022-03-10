@@ -6,7 +6,12 @@ const Movie = (props) => {
   const { ratio } = props;
   return (
     <div className="item">
-      <DeleteButton top={"1rem"} right={"1rem"} movieId={props.movie.id} />
+      <DeleteButton
+        top={"1rem"}
+        right={"1rem"}
+        movieId={props.movie.id}
+        category={props.movie.category}
+      />
       <div className="content">
         <h2>{props.movie.title}</h2>
         <p>{props.movie.category}</p>

@@ -52,9 +52,7 @@ const MoviesCard = () => {
       </div>
       {!isLoading && (
         <div className="pagination-container">
-          <PaginationComponent
-            count={Math.ceil(totalMovies / moviesPerPage)}
-          ></PaginationComponent>
+          <PaginationComponent totalMovies={totalMovies}></PaginationComponent>
         </div>
       )}
     </div>

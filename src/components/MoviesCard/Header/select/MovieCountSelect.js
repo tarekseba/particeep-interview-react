@@ -17,6 +17,7 @@ const MovieCountSelect = () => {
           id="demo-simple-select"
           value={moviesPerPage}
           onChange={handleChange}
+          style={{ textAlign: "center" }}
         >
           <MenuItem value={4}>4</MenuItem>
           <MenuItem value={8}>8</MenuItem>
