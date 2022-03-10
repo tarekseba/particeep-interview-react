@@ -1,25 +1,23 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Header from "./Header/Header";
-import { movies$ } from "../../mocked-server/movies";
 import "./MoviesCard.css";
 import Movie from "./Movie/Movie";
 import { CircularProgress } from "@mui/material";
 import { Context } from "../../Context/MoviesProvider";
+import PaginationComponent from "../UI/PaginationComponent";
 
 const MoviesCard = () => {
-  const { movies, setMovies, filters, setFilters, isLoading, setIsLoading } =
+  const { movies, filters, isLoading, currentPage, moviesPerPage } =
     useContext(Context);
 
-  useEffect(() => {
-    async function fetch() {
-      setIsLoading(true);
-      const movies = await movies$;
-      setIsLoading(false);
-      setMovies(movies);
-    }
-    fetch();
-  }, [setIsLoading, setMovies]);
-  const filteredMovies = movies.filter((value) => {
+  const lastIndex = moviesPerPage * currentPage;
+  const firstIndex = lastIndex - moviesPerPage;
+
+  const categories = movies
+    .map((value) => value.category)
+    .filter((value, index, list) => list.indexOf(value) === index);
+
+  let filteredMovies = movies.filter((value) => {
     if (filters && filters.length === 0) {
       return true;
     } else {
@@ -27,17 +25,16 @@ const MoviesCard = () => {
     }
   });
 
-  const categories = movies
-    .map((value) => value.category)
-    .filter((value, index, list) => list.indexOf(value) === index);
+  const totalMovies = filteredMovies.length;
+
+  filteredMovies = filteredMovies.slice(
+    firstIndex,
+    lastIndex > filteredMovies.length ? filteredMovies.length : lastIndex
+  );
 
   return (
     <div className="container">
-      <Header
-        categories={categories}
-        filters={filters}
-        onFilterChange={setFilters}
-      ></Header>
+      <Header categories={categories}></Header>
       {isLoading && (
         <div style={{ position: "absolute", top: "48%", left: "48%" }}>
           <CircularProgress color="inherit" />
@@ -53,6 +50,13 @@ const MoviesCard = () => {
             ></Movie>
           ))}
       </div>
+      {!isLoading && (
+        <div className="pagination-container">
+          <PaginationComponent
+            count={Math.ceil(totalMovies / moviesPerPage)}
+          ></PaginationComponent>
+        </div>
+      )}
     </div>
   );
 };

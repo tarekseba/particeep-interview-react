@@ -22,3 +22,12 @@
   height: auto;
   margin-left: 1rem;
 }
+
+.left-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 6px;
+}

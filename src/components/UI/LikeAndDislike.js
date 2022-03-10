@@ -25,23 +25,17 @@ const LikeAndDislike = (props) => {
       const state = [...newMovies, { ...movie, likes: movie.likes - 1 }].sort(
         sortArray
       );
-      console.log("new state");
-      console.log(state);
       setMovies(state);
     } else if (disliked) {
       const state = [
         ...newMovies,
         { ...movie, likes: movie.likes + 1, dislikes: movie.dislikes - 1 },
       ].sort(sortArray);
-      console.log("new state 2");
-      console.log(state);
       setMovies(state);
     } else {
       let state = [...newMovies, { ...movie, likes: movie.likes + 1 }].sort(
         sortArray
       );
-      console.log("new state 3");
-      console.log(state);
       setMovies(state);
     }
     setLikedOrDisliked((prev) => {
@@ -58,7 +52,6 @@ const LikeAndDislike = (props) => {
         { ...movie, dislikes: movie.dislikes - 1 },
       ].sort(sortArray);
       setMovies(state);
-      console.log(disliked + movie.dislikes - 1);
     } else if (liked) {
       const state = [
         ...newMovies,

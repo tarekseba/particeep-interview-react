@@ -6,6 +6,8 @@ const MoviesContext = (props) => {
   const [movies, setMovies] = useState([]);
   const [filters, setFilters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [moviesPerPage, setMoviesPerPage] = useState(12);
   useEffect(() => {
     async function fetch() {
       setIsLoading(true);
@@ -24,6 +26,10 @@ const MoviesContext = (props) => {
         setFilters: setFilters,
         isLoading: isLoading,
         setIsLoading: setIsLoading,
+        currentPage: currentPage,
+        setCurrentPage: setCurrentPage,
+        moviesPerPage: moviesPerPage,
+        setMoviesPerPage: setMoviesPerPage,
       }}
     >
       {props.children}
