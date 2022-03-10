@@ -1,0 +1,19 @@
+.btn {
+  opacity: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+}
+
+.btn > svg {
+  fill: rgb(255, 255, 255);
+}
+
+.btn > svg:hover {
+  fill: rgb(180, 26, 26);
+  filter: drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.3));
+  transform: scale(1.2);
+  transition: all ease-in-out 1s;
+}

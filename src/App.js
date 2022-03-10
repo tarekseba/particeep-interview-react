@@ -1,11 +1,14 @@
 import "./App.css";
 import MoviesCard from "./components/MoviesCard/MoviesCard";
+import MoviesContext from "./Context/MoviesProvider";
 
 function App() {
   return (
-    <div>
+    <MoviesContext>
       <MoviesCard></MoviesCard>
-    </div>
+    </MoviesContext>
+      
+    
   );
 }
 
