@@ -6,7 +6,7 @@ const Header = (props) => {
   return (
     <div className="movies-header">
       <div className="left-container">
-        <h2>Movies</h2>
+        <h2 style={{ textShadow: "1px 1px 8px black" }}>Movies</h2>
         <MovieCountSelect></MovieCountSelect>
         <h3>per page</h3>
       </div>

@@ -14,7 +14,7 @@
 .movies-header > h2 {
   color: rgb(0, 0, 0);
   height: auto;
-  margin-left: 1rem;
+  margin-left: 1.9rem;
 }
 
 .movies-header > button {
@@ -26,6 +26,7 @@
 .left-container {
   display: flex;
   flex-direction: row;
+  margin-left: 0.2rem;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;

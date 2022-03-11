@@ -30,7 +30,7 @@
   position: absolute;
   height: 100%;
   top: 0;
-  color: darkgrey;
+  color: rgba(169, 169, 169, 0.349);
   cursor: pointer;
   transform: scale(0.8);
 }
