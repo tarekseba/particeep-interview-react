@@ -22,6 +22,7 @@ const MoviesCard = () => {
       try {
         const movies = await movies$;
         dispatch(moviesActions.setMovies(movies));
+        dispatch(moviesActions.setIsLoading(false));
       } catch (err) {
         dispatch(moviesActions.setLoadingError(true));
       }

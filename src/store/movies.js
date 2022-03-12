@@ -15,6 +15,26 @@ const moviesSlice = createSlice({
     setMovies(state, action) {
       state.movies = action.payload;
     },
+    addLike: (state, action) => {
+      state.movies[
+        state.movies.findIndex((movie) => movie.id === action.payload)
+      ].likes++;
+    },
+    removeLike: (state, action) => {
+      state.movies[
+        state.movies.findIndex((movie) => movie.id === action.payload)
+      ].likes--;
+    },
+    addDislike: (state, action) => {
+      state.movies[
+        state.movies.findIndex((movie) => movie.id === action.payload)
+      ].dislikes++;
+    },
+    removeDislike: (state, action) => {
+      state.movies[
+        state.movies.findIndex((movie) => movie.id === action.payload)
+      ].dislikes--;
+    },
     removeMovie(state, action) {
       state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload
@@ -27,7 +47,9 @@ const moviesSlice = createSlice({
       state.filters.push(action.payload);
     },
     removeFilter(state, action) {
-      state.filters.filter((filter) => filter !== action.payload);
+      state.filters = state.filters.filter(
+        (filter) => filter !== action.payload
+      );
     },
     clearFilters(state) {
       state.filters = [];
@@ -44,5 +66,5 @@ const moviesSlice = createSlice({
   },
 });
 
-export default moviesSlice.reducer;
+export const moviesReducer = moviesSlice.reducer;
 export const moviesActions = moviesSlice.actions;
