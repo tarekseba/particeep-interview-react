@@ -1,8 +1,11 @@
 import { createContext, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { moviesActions } from "../store/movies";
 import { movies$ } from "../mocked-server/movies";
 export const Context = createContext({});
 
 const MoviesContext = (props) => {
+  const dispatch = useDispatch();
   const [movies, setMovies] = useState([]);
   const [filters, setFilters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,13 +13,15 @@ const MoviesContext = (props) => {
   const [moviesPerPage, setMoviesPerPage] = useState(12);
   useEffect(() => {
     async function fetch() {
+      dispatch(moviesActions.setIsLoading(true));
       setIsLoading(true);
       const movies = await movies$;
       setIsLoading(false);
       setMovies(movies);
+      dispatch(moviesActions.setIsLoading(false));
     }
     fetch();
-  }, []);
+  }, [dispatch]);
   return (
     <Context.Provider
       value={{

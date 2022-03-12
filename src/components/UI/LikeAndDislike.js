@@ -1,16 +1,11 @@
-import { useContext, useState } from "react";
-import { Context } from "../../Context/MoviesProvider";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { moviesActions } from "../../store/movies";
 import "./LikeAndDislike.css";
 import RatioBar from "./RatioBar";
 
-const sortArray = (el1, el2) => {
-  if (+el1.id === +el2.id) return 0;
-  return +el1.id < +el2.id ? -1 : 1;
-};
-
 const LikeAndDislike = (props) => {
-  const moviesCtx = useContext(Context);
-  const { movies, setMovies } = moviesCtx;
+  const dispatch = useDispatch();
   const { ratio } = props;
   const [likedOrDisliked, setLikedOrDisliked] = useState({
     liked: false,
@@ -18,24 +13,13 @@ const LikeAndDislike = (props) => {
   });
   const likeHandler = (event) => {
     const { liked, disliked } = likedOrDisliked;
-    const movie = movies.find((mov) => mov.id === props.movieId);
-    let newMovies = movies.filter((mov) => mov.id !== props.movieId);
     if (liked) {
-      const state = [...newMovies, { ...movie, likes: movie.likes - 1 }].sort(
-        sortArray
-      );
-      setMovies(state);
+      dispatch(moviesActions.removeLike(props.movieId));
     } else if (disliked) {
-      const state = [
-        ...newMovies,
-        { ...movie, likes: movie.likes + 1, dislikes: movie.dislikes - 1 },
-      ].sort(sortArray);
-      setMovies(state);
+      dispatch(moviesActions.addLike(props.movieId));
+      dispatch(moviesActions.removeDislike(props.movieId));
     } else {
-      let state = [...newMovies, { ...movie, likes: movie.likes + 1 }].sort(
-        sortArray
-      );
-      setMovies(state);
+      dispatch(moviesActions.addLike(props.movieId));
     }
     setLikedOrDisliked((prev) => {
       return { liked: !prev.liked, disliked: false };
@@ -43,26 +27,13 @@ const LikeAndDislike = (props) => {
   };
   const dislikeHandler = (event) => {
     const { disliked, liked } = likedOrDisliked;
-    const movie = movies.find((mov) => mov.id === props.movieId);
-    let newMovies = movies.filter((mov) => mov.id !== props.movieId);
     if (disliked) {
-      const state = [
-        ...newMovies,
-        { ...movie, dislikes: movie.dislikes - 1 },
-      ].sort(sortArray);
-      setMovies(state);
+      dispatch(moviesActions.removeDislike(props.movieId));
     } else if (liked) {
-      const state = [
-        ...newMovies,
-        { ...movie, likes: movie.likes - 1, dislikes: movie.dislikes + 1 },
-      ].sort(sortArray);
-      setMovies(state);
+      dispatch(moviesActions.addDislike(props.movieId));
+      dispatch(moviesActions.removeLike(props.movieId));
     } else {
-      const state = [
-        ...newMovies,
-        { ...movie, dislikes: movie.dislikes + 1 },
-      ].sort(sortArray);
-      setMovies(state);
+      dispatch(moviesActions.addDislike(props.movieId));
     }
     setLikedOrDisliked((prev) => {
       return { liked: false, disliked: !prev.disliked };

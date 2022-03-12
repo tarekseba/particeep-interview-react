@@ -1,20 +1,19 @@
 import { FormControl, MenuItem, Select } from "@mui/material";
-import { useContext } from "react";
-import { Context } from "../../../Context/MoviesProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { moviesActions } from "../../../store/movies";
 
 const MovieCountSelect = () => {
-  const { moviesPerPage, setMoviesPerPage } = useContext(Context);
+  const moviesPerPage = useSelector((state) => state.movies.moviesPerPage);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
-    setMoviesPerPage(event.target.value);
+    dispatch(moviesActions.setMoviesPerPage(event.target.value));
   };
 
   return (
     <div>
       <FormControl variant="standard" style={{ width: "50px" }}>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
           value={moviesPerPage}
           onChange={handleChange}
           style={{ textAlign: "center" }}

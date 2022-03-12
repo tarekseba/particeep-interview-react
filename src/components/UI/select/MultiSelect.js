@@ -4,8 +4,8 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
-import { Context } from "../../../Context/MoviesProvider";
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { moviesActions } from "../../../store/movies";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,13 +20,19 @@ const MenuProps = {
 };
 
 const MultiSelect = (props) => {
+  const filters = useSelector((state) => state.movies.filters);
+  const dispatch = useDispatch();
   const { categories } = props;
-  const { filters, setFilters } = useContext(Context);
+  //const { filters, setFilters } = useContext(Context);
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setFilters(typeof value === "string" ? value.split(",") : value);
+    dispatch(
+      moviesActions.setFilters(
+        typeof value === "string" ? value.split(",") : value
+      )
+    );
   };
 
   return (
@@ -34,7 +40,7 @@ const MultiSelect = (props) => {
       <FormControl
         variant="standard"
         sx={{ m: 1 }}
-        style={{ minWidth: 120, maxWidth: 200, maxHeight: 80 }}
+        style={{ minWidth: 100, maxWidth: 130, maxHeight: 80 }}
       >
         <Select
           multiple
