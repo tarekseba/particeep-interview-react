@@ -15,8 +15,6 @@ const MoviesCard = () => {
   const moviesPerPage = useSelector((state) => state.movies.moviesPerPage);
   const currentPage = useSelector((state) => state.movies.currentPage);
   const dispatch = useDispatch();
-  console.log("rerender");
-  console.log(filters);
   useEffect(() => {
     const fetchMovies = async () => {
       try {

@@ -26,7 +26,6 @@ const Movie = (props) => {
   const deleteHandler = (event) => {
     const newMovies = movies.filter((mov) => mov.id !== props.movie.id);
     if (!newMovies.map((mov) => mov.category).includes(props.movie.category)) {
-      console.log("inside");
       dispatch(moviesActions.removeFilter(props.movie.category));
     }
     dispatch(moviesActions.removeMovie(props.movie.id));
