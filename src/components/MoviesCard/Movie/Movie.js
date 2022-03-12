@@ -3,7 +3,7 @@ import DeleteButton from "../../UI/DeleteButton";
 import moviePosters from "../../../utils";
 import "./Movie.css";
 import { useContext, useState } from "react";
-import { Context } from "../../../Context/MoviesProvider";
+import { Context } from "../../../context/MoviesProvider";
 import { Button } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";

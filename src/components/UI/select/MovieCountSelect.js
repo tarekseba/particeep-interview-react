@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select } from "@mui/material";
 import { useContext } from "react";
-import { Context } from "../../../Context/MoviesProvider";
+import { Context } from "../../../context/MoviesProvider";
 
 const MovieCountSelect = () => {
   const { moviesPerPage, setMoviesPerPage } = useContext(Context);

@@ -3,7 +3,7 @@ import Header from "./Header/Header";
 import "./MoviesCard.css";
 import Movie from "./Movie/Movie";
 import { CircularProgress } from "@mui/material";
-import { Context } from "../../Context/MoviesProvider";
+import { Context } from "../../context/MoviesProvider";
 import PaginationComponent from "../UI/PaginationComponent";
 
 const MoviesCard = () => {

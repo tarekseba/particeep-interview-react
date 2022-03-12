@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Context } from "../../Context/MoviesProvider";
+import { Context } from "../../context/MoviesProvider";
 import "./LikeAndDislike.css";
 import RatioBar from "./RatioBar";
 

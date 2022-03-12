@@ -1,6 +1,6 @@
 import { Pagination } from "@mui/material";
 import { useContext, useEffect } from "react";
-import { Context } from "../../Context/MoviesProvider";
+import { Context } from "../../context/MoviesProvider";
 
 const PaginationComponent = (props) => {
   const { currentPage, setCurrentPage, filters, moviesPerPage } =
