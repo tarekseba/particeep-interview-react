@@ -10,13 +10,13 @@
   position: relative;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
   .container {
     width: 80vw;
   }
 }
 
-@media only screen and (min-width: 600px){
+@media only screen and (min-width: 600px) {
   .container {
     width: 50vw;
   }
@@ -31,7 +31,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   height: auto;
-  max-height: 87%;
+  max-height: 86%;
   padding-bottom: 1rem;
   row-gap: 1rem;
   margin: 0 0.3rem 0 0.3rem;

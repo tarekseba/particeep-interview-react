@@ -62,5 +62,5 @@
 }
 
 .radio-group > input:checked + label[for="disliked"] > i {
-    color: rgb(120, 36, 36);
+  color: rgb(120, 36, 36);
 }

@@ -2,11 +2,12 @@ import LikeAndDislike from "../../UI/LikeAndDislike";
 import DeleteButton from "../../UI/DeleteButton";
 import moviePosters from "../../../utils";
 import "./Movie.css";
-import { useContext, useState } from "react";
-import { Context } from "../../../context/MoviesProvider";
 import { Button } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";
+import { useDispatch, useSelector } from "react-redux";
+import { moviesActions } from "../../../store/movies";
+import { useState } from "react";
 
 const theme = createTheme({
   palette: {
@@ -17,18 +18,18 @@ const theme = createTheme({
 });
 
 const Movie = (props) => {
+  const movies = useSelector((state) => state.movies.movies);
+  const dispatch = useDispatch();
+
   const [toggleModal, setToggleModal] = useState(false);
-  const { movies, setMovies, filters, setFilters } = useContext(Context);
+
   const deleteHandler = (event) => {
     const newMovies = movies.filter((mov) => mov.id !== props.movie.id);
-    console.log(newMovies);
     if (!newMovies.map((mov) => mov.category).includes(props.movie.category)) {
-      const newFilters = filters.filter((fil) => fil !== props.movie.category);
       console.log("inside");
-      console.log(newFilters);
-      setFilters([...newFilters]);
+      dispatch(moviesActions.removeFilter(props.movie.category));
     }
-    setMovies([...newMovies]);
+    dispatch(moviesActions.removeMovie(props.movie.id));
     setToggleModal(false);
   };
   const modalToggleHandler = () => {
@@ -37,7 +38,7 @@ const Movie = (props) => {
   const { ratio } = props;
   return (
     <div className="item">
-      <DeleteButton top={"1rem"} right={"2rem"} setModal={modalToggleHandler} />
+      <DeleteButton top={"1rem"} right={"1rem"} setModal={modalToggleHandler} />
       <div className="content">
         <h2>{props.movie.title}</h2>
         <h3>{props.movie.category}</h3>
@@ -46,11 +47,7 @@ const Movie = (props) => {
         <LikeAndDislike ratio={ratio} movieId={props.movie.id}></LikeAndDislike>
       </div>
       <div className="background-image">
-        <img
-          src={moviePosters[props.movie.id]}
-          className="background-image"
-          alt="not found"
-        ></img>
+        <img src={moviePosters[props.movie.id]} alt="Image not found"></img>
       </div>
       <div className="gradient-cover"></div>
       <div

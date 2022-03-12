@@ -1,14 +1,33 @@
-import { useContext } from "react";
+import { useEffect } from "react";
 import Header from "./Header/Header";
 import "./MoviesCard.css";
 import Movie from "./Movie/Movie";
 import { CircularProgress } from "@mui/material";
-import { Context } from "../../context/MoviesProvider";
 import PaginationComponent from "../UI/PaginationComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { moviesActions } from "../../store/movies";
+import { movies$ } from "../../mocked-server/movies";
 
 const MoviesCard = () => {
-  const { movies, filters, isLoading, currentPage, moviesPerPage } =
-    useContext(Context);
+  const movies = useSelector((state) => state.movies.movies);
+  const isLoading = useSelector((state) => state.movies.isLoading);
+  const filters = useSelector((state) => state.movies.filters);
+  const moviesPerPage = useSelector((state) => state.movies.moviesPerPage);
+  const currentPage = useSelector((state) => state.movies.currentPage);
+  const dispatch = useDispatch();
+  console.log("rerender");
+  console.log(filters);
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const movies = await movies$;
+        dispatch(moviesActions.setMovies(movies));
+      } catch (err) {
+        dispatch(moviesActions.setLoadingError(true));
+      }
+    };
+    fetchMovies();
+  }, [dispatch]);
 
   const lastIndex = moviesPerPage * currentPage;
   const firstIndex = lastIndex - moviesPerPage;
