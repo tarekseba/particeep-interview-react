@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { moviesActions } from "../../store/movies";
 import "./LikeAndDislike.css";
 import RatioBar from "./RatioBar";
 
 const LikeAndDislike = (props) => {
-  const movies = useSelector((state) => state.movies);
   const dispatch = useDispatch();
   const { ratio } = props;
   const [likedOrDisliked, setLikedOrDisliked] = useState({

@@ -2,30 +2,23 @@ import { useEffect } from "react";
 import Header from "./Header/Header";
 import "./MoviesCard.css";
 import Movie from "./Movie/Movie";
-import { CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import PaginationComponent from "../UI/PaginationComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { moviesActions } from "../../store/movies";
-import { movies$ } from "../../mocked-server/movies";
+import { LOADING, STABLE } from "../../utils";
+import { fetchMoviesAction } from "../../store/movies";
 
 const MoviesCard = () => {
-  const movies = useSelector((state) => state.movies.movies);
-  const isLoading = useSelector((state) => state.movies.isLoading);
-  const filters = useSelector((state) => state.movies.filters);
-  const moviesPerPage = useSelector((state) => state.movies.moviesPerPage);
-  const currentPage = useSelector((state) => state.movies.currentPage);
+  const { movies, moviesStatus, filters, moviesPerPage, currentPage } =
+    useSelector((state) => state.movies);
   const dispatch = useDispatch();
+
+  const fetchMovies = async () => {
+    dispatch(fetchMoviesAction());
+  };
+
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const movies = await movies$;
-        dispatch(moviesActions.setMovies(movies));
-        dispatch(moviesActions.setIsLoading(false));
-      } catch (err) {
-        dispatch(moviesActions.setLoadingError(true));
-      }
-    };
-    fetchMovies();
+    dispatch(fetchMoviesAction());
   }, [dispatch]);
 
   const lastIndex = moviesPerPage * currentPage;
@@ -53,25 +46,56 @@ const MoviesCard = () => {
   return (
     <div className="container">
       <Header categories={categories}></Header>
-      {isLoading && (
+      {!(moviesStatus === STABLE) && (
         <div style={{ position: "absolute", top: "48%", left: "48%" }}>
-          <CircularProgress color="inherit" />
+          {moviesStatus === LOADING ? (
+            <CircularProgress color="inherit" />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                gap: "0.2rem",
+              }}
+            >
+              <p style={{ fontWeight: "bold", margin: "auto" }}>
+                Loading failed...
+              </p>
+              <Button
+                variant="contained"
+                style={{
+                  fontWeight: "bold",
+                  color: "rgb(0,0,0)",
+                  height: "1rem",
+                  width: "1rem",
+                  maxWidth: "1rem",
+                  minWidth: "0.5rem",
+                  backgroundColor: "rgba(0, 0,0, 0.2)",
+                }}
+                onClick={fetchMovies}
+              >
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+              </Button>
+            </div>
+          )}
         </div>
       )}
-      <div className="flex-container">
-        {!isLoading &&
-          filteredMovies.map((item) => (
-            <Movie
-              movie={item}
-              key={item.id}
-              ratio={(item.likes / (item.dislikes + item.likes)) * 100}
-            ></Movie>
-          ))}
-      </div>
-      {!isLoading && (
-        <div className="pagination-container">
-          <PaginationComponent totalMovies={totalMovies}></PaginationComponent>
-        </div>
+      {moviesStatus === STABLE && (
+        <>
+          <div className="flex-container">
+            {filteredMovies.map((item) => (
+              <Movie
+                movie={item}
+                key={item.id}
+                ratio={(item.likes / (item.dislikes + item.likes)) * 100}
+              ></Movie>
+            ))}
+          </div>
+          <div className="pagination-container">
+            <PaginationComponent
+              totalMovies={totalMovies}
+            ></PaginationComponent>
+          </div>
+        </>
       )}
     </div>
   );

@@ -12,4 +12,8 @@ const moviePosters = {
   11: "https://i.pinimg.com/originals/45/9c/92/459c927704c39218f32f3d7234779e2f.jpg",
 };
 
+export const LOADING_ERROR = "LOADING_ERROR";
+export const LOADING = "LOADING";
+export const STABLE = "STABLE";
+
 export default moviePosters;

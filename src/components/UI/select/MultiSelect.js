@@ -40,7 +40,7 @@ const MultiSelect = (props) => {
       <FormControl
         variant="standard"
         sx={{ m: 1 }}
-        style={{ minWidth: 120, maxWidth: 200, maxHeight: 80 }}
+        style={{ minWidth: 100, maxWidth: 130, maxHeight: 80 }}
       >
         <Select
           multiple

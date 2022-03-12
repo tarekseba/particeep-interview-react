@@ -5,7 +5,7 @@ import "./Movie.css";
 import { Button } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { moviesActions } from "../../../store/movies";
 import { useState } from "react";
 
@@ -18,17 +18,12 @@ const theme = createTheme({
 });
 
 const Movie = (props) => {
-  const movies = useSelector((state) => state.movies.movies);
   const dispatch = useDispatch();
 
   const [toggleModal, setToggleModal] = useState(false);
 
   const deleteHandler = (event) => {
-    const newMovies = movies.filter((mov) => mov.id !== props.movie.id);
-    if (!newMovies.map((mov) => mov.category).includes(props.movie.category)) {
-      dispatch(moviesActions.removeFilter(props.movie.category));
-    }
-    dispatch(moviesActions.removeMovie(props.movie.id));
+    dispatch(moviesActions.removeMovie(props.movie));
     setToggleModal(false);
   };
   const modalToggleHandler = () => {
