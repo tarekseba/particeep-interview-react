@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { movies$ } from "../mocked-server/movies";
-import { LOADING, LOADING_ERROR, STABLE } from "../utils";
+import { status } from "../utils";
 
 const initialState = {
   // movies list
@@ -8,7 +8,7 @@ const initialState = {
   // filters list
   filters: [],
   // fetching error handling
-  moviesStatus: STABLE,
+  moviesStatus: status.STABLE,
   currentPage: 1,
   moviesPerPage: 12,
 };
@@ -84,7 +84,7 @@ const moviesSlice = createSlice({
 });
 
 export const fetchMoviesAction = () => async (dispatch) => {
-  dispatch(moviesActions.setMoviesStatus(LOADING));
+  dispatch(moviesActions.setMoviesStatus(status.LOADING));
   try {
     const response = await movies$;
     /**
@@ -93,9 +93,9 @@ export const fetchMoviesAction = () => async (dispatch) => {
      * because in fetch API case 4** and 3** status codes do not throw exceptions so cannot be caught with try catch
      */
     dispatch(moviesActions.setMovies(response));
-    dispatch(moviesActions.setMoviesStatus(STABLE));
+    dispatch(moviesActions.setMoviesStatus(status.STABLE));
   } catch (err) {
-    dispatch(moviesActions.setMoviesStatus(LOADING_ERROR));
+    dispatch(moviesActions.setMoviesStatus(status.LOADING_ERROR));
   }
 };
 

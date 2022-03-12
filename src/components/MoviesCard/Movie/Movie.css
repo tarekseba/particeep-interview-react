@@ -1,64 +1,6 @@
 .item {
-  width: 200px;
-  height: 240px;
-  border-radius: 30% 5%; /* 4% 50% / 10% 10%; */
-  flex-basis: 240px;
-  margin: 5px;
-  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.25);
   position: relative;
-  box-shadow: 5px 8px 12px 1px rgb(0 0 0 / 50%);
   transition: all ease-in-out 500ms;
-}
-
-.item .fa-circle-trash {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.item:hover {
-  transform: scale(1.05);
-}
-
-.item:hover > div[class="btn"] {
-  opacity: 1;
-  transition: all ease-in-out 1s;
-}
-
-.item:hover > div[class="gradient-cover"] {
-  opacity: 0.85;
-}
-
-.item:hover > .content {
-  transform: scale(1.04);
-}
-
-.item:hover > .content > h2 {
-  filter: drop-shadow(0 0 4px rgb(182, 133, 142));
-}
-
-.background-image {
-  z-index: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  overflow: hidden;
-}
-
-.background-image > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  overflow: hidden;
-  border-radius: inherit;
-  transition: all ease-in 2s;
-}
-
-.item:hover > .background-image > img {
-  transform: scale(1.05);
 }
 
 .content {
@@ -68,11 +10,135 @@
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 45%;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   margin-bottom: 0rem;
   transition: all ease-in-out 500ms;
+}
+
+.background-image {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.background-image > img {
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: inherit;
+  transition: all ease-in 2s;
+}
+
+.like-dislike {
+  position: absolute;
+  z-index: 3;
+}
+
+.gradient-cover {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 178, 42, 6%) 0%,
+    rgba(33, 33, 32, 0.8) 40%,
+    rgba(33, 33, 32, 1) 100%
+  );
+  transition: all ease-in-out 500ms;
+}
+
+@media only screen and (max-width: 700px) {
+  .item {
+    width: 350px;
+    height: 180px;
+    border-radius: 4px; /* 4% 50% / 10% 10%; */
+    flex-basis: 350px;
+    margin: 5px;
+    box-shadow: 1px 2px 8px 2px rgb(0 0 0 / 50%);
+  }
+
+  .content {
+    padding-top: 15%;
+    width: 100%;
+    height: 100%;
+    padding-left: 40%;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-bottom: 0rem;
+    transition: all ease-in-out 500ms;
+  }
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .background-image > img {
+    width: 65%;
+    object-fit: cover;
+  }
+
+  .like-dislike {
+    top: 69%;
+    width: 100%;
+    height: 2.5rem;
+  }
+
+  .gradient-cover {
+    background-image: linear-gradient(
+      to right,
+      rgb(255, 178, 42, 6%) 0%,
+      rgba(33, 33, 32, 1) 60%,
+      rgb(0, 0, 0) 100%
+    );
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .item {
+    width: 200px;
+    height: 240px;
+    border-radius: 15% 5%; /* 4% 50% / 10% 10%; */
+    flex-basis: 240px;
+    margin: 5px;
+    box-shadow: 5px 8px 12px 1px rgb(0 0 0 / 50%);
+  }
+  .content {
+    width: 100%;
+    height: 100%;
+    padding-top: 45%;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-bottom: 0rem;
+    transition: all ease-in-out 500ms;
+  }
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .background-image > img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .like-dislike {
+    top: 65%;
+    width: 100%;
+  }
+}
+
+.item:hover > .background-image > img {
+  transform: scale(1.05);
 }
 
 .content > h2 {
@@ -96,36 +162,12 @@
   transition: all ease-in-out 500s;
 }
 
-.like-dislike {
-  position: absolute;
-  z-index: 3;
-  top: 65%;
-  width: 100%;
-}
-
 .item:hover div.bar-wrapper {
   opacity: 1;
 }
 
 .item:hover div.ratio {
   filter: drop-shadow(0px 0px 5px rgba(30, 116, 223, 1));
-}
-
-.gradient-cover {
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background-image: linear-gradient(
-    to bottom,
-    rgb(255, 178, 42, 6%) 0%,
-    rgba(33, 33, 32, 0.8) 40%,
-    rgba(33, 33, 32, 1) 100%
-  );
-  transition: all ease-in-out 500ms;
 }
 
 .modal {
@@ -145,4 +187,25 @@
   border-radius: inherit;
   background-color: #fff176;
   box-shadow: inset 0px 0px 80px 10px rgb(0 0 0);
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+.item:hover > div[class="btn"] {
+  opacity: 1;
+  transition: all ease-in-out 1s;
+}
+
+.item:hover > div[class="gradient-cover"] {
+  opacity: 0.99;
+}
+
+.item:hover > .content {
+  transform: scale(1.04);
+}
+
+.item:hover > .content > h2 {
+  filter: drop-shadow(0 0 4px rgb(182, 133, 142));
 }

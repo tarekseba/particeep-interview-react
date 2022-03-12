@@ -6,7 +6,6 @@ const DeleteButton = (props) => {
   return (
     <div
       className="btn"
-      style={{ top: props.top, right: props.right }}
       onClick={modalHandler}
     >
       <svg

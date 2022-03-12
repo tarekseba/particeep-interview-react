@@ -3,8 +3,8 @@ const movies = [
     id: "1",
     title: "The Hateful Eight",
     category: "Thriller",
-    likes: 10,
-    dislikes: 3,
+    likes: 3,
+    dislikes: 1,
   },
   {
     id: "2",

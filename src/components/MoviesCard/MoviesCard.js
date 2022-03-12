@@ -5,7 +5,7 @@ import Movie from "./Movie/Movie";
 import { Button, CircularProgress } from "@mui/material";
 import PaginationComponent from "../UI/PaginationComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { LOADING, STABLE } from "../../utils";
+import { status } from "../../utils";
 import { fetchMoviesAction } from "../../store/movies";
 
 const MoviesCard = () => {
@@ -46,9 +46,9 @@ const MoviesCard = () => {
   return (
     <div className="container">
       <Header categories={categories}></Header>
-      {!(moviesStatus === STABLE) && (
+      {!(moviesStatus === status.STABLE) && (
         <div style={{ position: "absolute", top: "48%", left: "48%" }}>
-          {moviesStatus === LOADING ? (
+          {moviesStatus === status.LOADING ? (
             <CircularProgress color="inherit" />
           ) : (
             <div
@@ -79,7 +79,7 @@ const MoviesCard = () => {
           )}
         </div>
       )}
-      {moviesStatus === STABLE && (
+      {moviesStatus === status.STABLE && (
         <>
           <div className="flex-container">
             {filteredMovies.map((item) => (

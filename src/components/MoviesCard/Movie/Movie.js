@@ -32,7 +32,7 @@ const Movie = (props) => {
   const { ratio } = props;
   return (
     <div className="item">
-      <DeleteButton top={"1rem"} right={"1rem"} setModal={modalToggleHandler} />
+      <DeleteButton setModal={modalToggleHandler} />
       <div className="content">
         <h2>{props.movie.title}</h2>
         <h3>{props.movie.category}</h3>

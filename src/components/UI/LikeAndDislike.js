@@ -13,6 +13,9 @@ const LikeAndDislike = (props) => {
   });
   const likeHandler = (event) => {
     const { liked, disliked } = likedOrDisliked;
+    /**
+     * In a real scenario, i would have used a thunk to call API
+     */
     if (liked) {
       dispatch(moviesActions.removeLike(props.movieId));
     } else if (disliked) {
