@@ -6,11 +6,7 @@ import RatioBar from "./RatioBar";
 
 const LikeAndDislike = (props) => {
   const dispatch = useDispatch();
-  const { ratio } = props;
-  const [likedOrDisliked, setLikedOrDisliked] = useState({
-    liked: props.liked,
-    disliked: props.disliked,
-  });
+  const { ratio, ...likedOrDisliked } = props;
   const likeHandler = (event) => {
     const { liked, disliked } = likedOrDisliked;
     /**
@@ -24,9 +20,6 @@ const LikeAndDislike = (props) => {
     } else {
       dispatch(moviesActions.addLike(props.movieId));
     }
-    setLikedOrDisliked((prev) => {
-      return { liked: !prev.liked, disliked: false };
-    });
   };
   const dislikeHandler = (event) => {
     const { disliked, liked } = likedOrDisliked;
@@ -38,9 +31,6 @@ const LikeAndDislike = (props) => {
     } else {
       dispatch(moviesActions.addDislike(props.movieId));
     }
-    setLikedOrDisliked((prev) => {
-      return { liked: false, disliked: !prev.disliked };
-    });
   };
   return (
     <>
