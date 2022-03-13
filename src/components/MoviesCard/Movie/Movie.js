@@ -38,7 +38,12 @@ const Movie = (props) => {
         <h3>{props.movie.category}</h3>
       </div>
       <div className="like-dislike">
-        <LikeAndDislike ratio={ratio} movieId={props.movie.id}></LikeAndDislike>
+        <LikeAndDislike
+          ratio={ratio}
+          movieId={props.movie.id}
+          liked={props.movie.liked}
+          disliked={props.movie.disliked}
+        ></LikeAndDislike>
       </div>
       <div className="background-image">
         <img src={moviePosters[props.movie.id]} alt="Image not found"></img>

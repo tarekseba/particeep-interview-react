@@ -8,8 +8,8 @@ const LikeAndDislike = (props) => {
   const dispatch = useDispatch();
   const { ratio } = props;
   const [likedOrDisliked, setLikedOrDisliked] = useState({
-    liked: false,
-    disliked: false,
+    liked: props.liked,
+    disliked: props.disliked,
   });
   const likeHandler = (event) => {
     const { liked, disliked } = likedOrDisliked;

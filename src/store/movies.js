@@ -21,24 +21,32 @@ const moviesSlice = createSlice({
       state.movies = action.payload;
     },
     addLike: (state, action) => {
-      state.movies[
-        state.movies.findIndex((movie) => movie.id === action.payload)
-      ].likes++;
+      const index = state.movies.findIndex(
+        (movie) => movie.id === action.payload
+      );
+      state.movies[index].likes++;
+      state.movies[index].liked = true;
     },
     removeLike: (state, action) => {
-      state.movies[
-        state.movies.findIndex((movie) => movie.id === action.payload)
-      ].likes--;
+      const index = state.movies.findIndex(
+        (movie) => movie.id === action.payload
+      );
+      state.movies[index].likes--;
+      state.movies[index].liked = false;
     },
     addDislike: (state, action) => {
-      state.movies[
-        state.movies.findIndex((movie) => movie.id === action.payload)
-      ].dislikes++;
+      const index = state.movies.findIndex(
+        (movie) => movie.id === action.payload
+      );
+      state.movies[index].dislikes++;
+      state.movies[index].disliked = true;
     },
     removeDislike: (state, action) => {
-      state.movies[
-        state.movies.findIndex((movie) => movie.id === action.payload)
-      ].dislikes--;
+      const index = state.movies.findIndex(
+        (movie) => movie.id === action.payload
+      );
+      state.movies[index].dislikes--;
+      state.movies[index].disliked = false;
     },
     removeMovie: (state, action) => {
       const newMovies = state.movies.filter(
@@ -92,7 +100,13 @@ export const fetchMoviesAction = () => async (dispatch) => {
      * if(response.ok){...} else throw response;
      * because in fetch API case 4** and 3** status codes do not throw exceptions so cannot be caught with try catch
      */
-    dispatch(moviesActions.setMovies(response));
+    dispatch(
+      moviesActions.setMovies(
+        response.map((movie) => {
+          return { ...movie, liked: false, disliked: false };
+        })
+      )
+    );
     dispatch(moviesActions.setMoviesStatus(status.STABLE));
   } catch (err) {
     dispatch(moviesActions.setMoviesStatus(status.LOADING_ERROR));
