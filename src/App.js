@@ -1,4 +1,4 @@
-import "./App.css";
+import './App.css';
 import MoviesCard from "./components/MoviesCard/MoviesCard";
 
 function App() {
